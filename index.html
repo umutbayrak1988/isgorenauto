@@ -1,0 +1,972 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>İşgören Otomotiv – Yedek Parça</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --red: #c0392b;
+        --dark: #1a1a2e;
+        --mid: #16213e;
+        --light: #0f3460;
+        --accent: #e94560;
+        --gray: #f4f6f8;
+        --text: #333;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--text);
+        background: #fff;
+      }
+
+      /* ── NAVBAR ─────────────────────────────── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: var(--dark);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 6%;
+        height: 68px;
+        z-index: 100;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+      }
+
+      .nav-logo {
+        font-size: 1.45rem;
+        font-weight: 800;
+        color: #fff;
+        letter-spacing: 1px;
+      }
+
+      .nav-logo span {
+        color: var(--accent);
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+      }
+
+      nav ul a {
+        color: #ccc;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+
+      nav ul a:hover {
+        color: var(--accent);
+      }
+
+      /* ── HERO ────────────────────────────────── */
+      #hero {
+        min-height: 100vh;
+        background: linear-gradient(
+          135deg,
+          var(--dark) 0%,
+          var(--mid) 50%,
+          var(--light) 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 100px 6% 60px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      #hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+
+      .hero-content {
+        position: relative;
+        max-width: 780px;
+      }
+
+      .hero-badge {
+        display: inline-block;
+        background: var(--accent);
+        color: #fff;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 0.35rem 1.1rem;
+        border-radius: 20px;
+        margin-bottom: 1.4rem;
+      }
+
+      #hero h1 {
+        font-size: clamp(2.2rem, 5vw, 3.8rem);
+        font-weight: 900;
+        color: #fff;
+        line-height: 1.15;
+        margin-bottom: 1.2rem;
+      }
+
+      #hero h1 span {
+        color: var(--accent);
+      }
+
+      #hero p {
+        color: #9ab;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 2.2rem;
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 0.85rem 2rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
+        cursor: pointer;
+        border: none;
+        display: inline-block;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: #fff;
+        border: 2px solid rgba(255, 255, 255, 0.35);
+      }
+
+      /* ── SECTION BASE ────────────────────────── */
+      section {
+        padding: 90px 6%;
+      }
+
+      .section-label {
+        text-align: center;
+        font-size: 0.8rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--accent);
+        margin-bottom: 0.6rem;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: clamp(1.6rem, 3vw, 2.4rem);
+        font-weight: 800;
+        color: var(--dark);
+        margin-bottom: 1rem;
+      }
+
+      .section-sub {
+        text-align: center;
+        color: #666;
+        font-size: 1rem;
+        line-height: 1.7;
+        max-width: 620px;
+        margin: 0 auto 3.5rem;
+      }
+
+      /* ── STATS ───────────────────────────────── */
+      #stats {
+        background: var(--dark);
+        padding: 60px 6%;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 2rem;
+        max-width: 960px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .stat-item h3 {
+        font-size: 2.6rem;
+        font-weight: 900;
+        color: var(--accent);
+      }
+
+      .stat-item p {
+        color: #9ab;
+        font-size: 0.9rem;
+        margin-top: 0.4rem;
+      }
+
+      /* ── BRANDS ──────────────────────────────── */
+      #brands {
+        background: var(--gray);
+      }
+
+      .brands-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.8rem;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .brand-card {
+        background: #fff;
+        border-radius: 14px;
+        padding: 1.6rem 2.4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        min-width: 140px;
+      }
+
+      .brand-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+      }
+
+      .brand-card svg {
+        width: 70px;
+        height: 50px;
+      }
+
+      .brand-card span {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #555;
+        letter-spacing: 1px;
+      }
+
+      /* ── SERVICES ────────────────────────────── */
+      #services {
+        background: #fff;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.8rem;
+        max-width: 1120px;
+        margin: 0 auto;
+      }
+
+      .service-card {
+        border: 1px solid #eee;
+        border-radius: 14px;
+        padding: 2rem 1.8rem;
+        transition:
+          box-shadow 0.2s,
+          border-color 0.2s;
+      }
+
+      .service-card:hover {
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+        border-color: var(--accent);
+      }
+
+      .service-icon {
+        width: 52px;
+        height: 52px;
+        background: linear-gradient(135deg, var(--accent), var(--red));
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.2rem;
+        font-size: 1.5rem;
+      }
+
+      .service-card h3 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 0.7rem;
+        color: var(--dark);
+      }
+
+      .service-card p {
+        color: #666;
+        font-size: 0.92rem;
+        line-height: 1.7;
+      }
+
+      /* ── WHY US ──────────────────────────────── */
+      #why {
+        background: linear-gradient(135deg, var(--dark), var(--mid));
+        color: #fff;
+      }
+
+      #why .section-title {
+        color: #fff;
+      }
+      #why .section-sub {
+        color: #9ab;
+      }
+      #why .section-label {
+        color: var(--accent);
+      }
+
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 1.6rem;
+        max-width: 1080px;
+        margin: 0 auto;
+      }
+
+      .why-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        padding: 1.8rem;
+        text-align: center;
+      }
+
+      .why-card .icon {
+        font-size: 2.2rem;
+        margin-bottom: 0.9rem;
+      }
+      .why-card h4 {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+      .why-card p {
+        color: #9ab;
+        font-size: 0.88rem;
+        line-height: 1.65;
+      }
+
+      /* ── CONTACT ─────────────────────────────── */
+      #contact {
+        background: var(--gray);
+      }
+
+      .contact-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        max-width: 1000px;
+        margin: 0 auto;
+        align-items: start;
+      }
+
+      @media (max-width: 700px) {
+        .contact-wrapper {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .contact-info h3 {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--dark);
+        margin-bottom: 1.4rem;
+      }
+
+      .info-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.9rem;
+        margin-bottom: 1.1rem;
+      }
+
+      .info-row .ico {
+        width: 40px;
+        height: 40px;
+        background: var(--accent);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+      }
+
+      .info-row div p:first-child {
+        font-weight: 700;
+        color: var(--dark);
+        font-size: 0.9rem;
+      }
+      .info-row div p:last-child {
+        color: #666;
+        font-size: 0.88rem;
+        margin-top: 0.15rem;
+      }
+
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .contact-form input,
+      .contact-form textarea,
+      .contact-form select {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        border: 1.5px solid #ddd;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-family: inherit;
+        outline: none;
+        transition: border-color 0.2s;
+        background: #fff;
+      }
+
+      .contact-form input:focus,
+      .contact-form textarea:focus,
+      .contact-form select:focus {
+        border-color: var(--accent);
+      }
+
+      .contact-form textarea {
+        resize: vertical;
+        min-height: 110px;
+      }
+
+      .contact-form button {
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        padding: 0.9rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .contact-form button:hover {
+        background: var(--red);
+      }
+
+      /* ── FOOTER ──────────────────────────────── */
+      footer {
+        background: var(--dark);
+        color: #9ab;
+        text-align: center;
+        padding: 2rem 6%;
+        font-size: 0.85rem;
+      }
+
+      footer strong {
+        color: var(--accent);
+      }
+
+      /* ── SCROLL to top ───────────────────────── */
+      #scrollTop {
+        position: fixed;
+        bottom: 1.8rem;
+        right: 1.8rem;
+        width: 44px;
+        height: 44px;
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+        z-index: 200;
+      }
+
+      #scrollTop.visible {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ═══════════════════════════ NAVBAR ══════════════════════════════ -->
+    <nav>
+      <div class="nav-logo">İş<span>Gören</span> Otomotiv</div>
+      <ul>
+        <li><a href="#hero">Ana Sayfa</a></li>
+        <li><a href="#brands">Markalar</a></li>
+        <li><a href="#services">Hizmetler</a></li>
+        <li><a href="#why">Neden Biz</a></li>
+        <li><a href="#contact">İletişim</a></li>
+      </ul>
+    </nav>
+
+    <!-- ═══════════════════════════ HERO ════════════════════════════════ -->
+    <section id="hero">
+      <div class="hero-content">
+        <div class="hero-badge">Güvenilir Yedek Parça Tedarikçisi</div>
+        <h1>
+          Aracınız İçin <span>En Doğru Parça</span><br />En Hızlı Teslimat
+        </h1>
+        <p>
+          Fiat, Renault, Ford, Peugeot, Citroën ve Iveco modellerine özel
+          orijinal ve eşdeğer yedek parça çözümleri. 25 yılı aşkın sektör
+          deneyimiyle hizmetinizdeyiz.
+        </p>
+        <div class="btn-group">
+          <a href="#contact" class="btn btn-primary">Teklif Al</a>
+          <a href="#services" class="btn btn-outline">Hizmetlerimiz</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ STATS ═══════════════════════════════ -->
+    <div id="stats">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h3>25+</h3>
+          <p>Yıllık Deneyim</p>
+        </div>
+        <div class="stat-item">
+          <h3>12.000+</h3>
+          <p>Stok Kalemi</p>
+        </div>
+        <div class="stat-item">
+          <h3>6</h3>
+          <p>Desteklenen Marka</p>
+        </div>
+        <div class="stat-item">
+          <h3>5.000+</h3>
+          <p>Mutlu Müşteri</p>
+        </div>
+        <div class="stat-item">
+          <h3>48 Saat</h3>
+          <p>Max. Teslimat</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════ BRANDS ══════════════════════════════ -->
+    <section id="brands">
+      <p class="section-label">Çalıştığımız Markalar</p>
+      <h2 class="section-title">Uzman Olduğumuz Marka Ailesi</h2>
+      <p class="section-sub">
+        Aşağıdaki markaların tüm model aralıkları için orijinal ve OEM eşdeğer
+        parçaları stokta bulunduruyoruz.
+      </p>
+      <div class="brands-grid">
+        <!-- FIAT -->
+        <div class="brand-card">
+          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="120" rx="8" fill="#cc0000" />
+            <text
+              x="100"
+              y="72"
+              text-anchor="middle"
+              font-family="Arial Black,Arial"
+              font-weight="900"
+              font-size="52"
+              fill="#fff"
+            >
+              FIAT
+            </text>
+          </svg>
+          <span>FIAT</span>
+        </div>
+
+        <!-- RENAULT -->
+        <div class="brand-card">
+          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="120" rx="8" fill="#f5c000" />
+            <!-- Renault diamond -->
+            <polygon
+              points="100,12 134,60 100,108 66,60"
+              fill="none"
+              stroke="#fff"
+              stroke-width="7"
+            />
+            <polygon points="100,25 122,60 100,95 78,60" fill="#fff" />
+            <polygon points="100,38 111,60 100,82 89,60" fill="#f5c000" />
+          </svg>
+          <span>RENAULT</span>
+        </div>
+
+        <!-- FORD -->
+        <div class="brand-card">
+          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="120" rx="8" fill="#003388" />
+            <ellipse
+              cx="100"
+              cy="60"
+              rx="88"
+              ry="42"
+              fill="#003388"
+              stroke="#fff"
+              stroke-width="5"
+            />
+            <text
+              x="100"
+              y="74"
+              text-anchor="middle"
+              font-family="'Ford Antenna',Georgia,serif"
+              font-style="italic"
+              font-weight="700"
+              font-size="46"
+              fill="#fff"
+            >
+              Ford
+            </text>
+          </svg>
+          <span>FORD</span>
+        </div>
+
+        <!-- PEUGEOT -->
+        <div class="brand-card">
+          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="120" rx="8" fill="#1a1a1a" />
+            <!-- simplified lion silhouette placeholder -->
+            <text
+              x="100"
+              y="58"
+              text-anchor="middle"
+              font-size="36"
+              fill="#c8a951"
+            >
+              🦁
+            </text>
+            <text
+              x="100"
+              y="98"
+              text-anchor="middle"
+              font-family="Arial Black,Arial"
+              font-weight="900"
+              font-size="22"
+              fill="#c8a951"
+              letter-spacing="3"
+            >
+              PEUGEOT
+            </text>
+          </svg>
+          <span>PEUGEOT</span>
+        </div>
+
+        <!-- CITROËN -->
+        <div class="brand-card">
+          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="120" rx="8" fill="#8b0000" />
+            <!-- Double chevron -->
+            <polyline
+              points="60,30 100,55 140,30"
+              fill="none"
+              stroke="#fff"
+              stroke-width="11"
+              stroke-linejoin="round"
+              stroke-linecap="round"
+            />
+            <polyline
+              points="60,55 100,80 140,55"
+              fill="none"
+              stroke="#fff"
+              stroke-width="11"
+              stroke-linejoin="round"
+              stroke-linecap="round"
+            />
+            <text
+              x="100"
+              y="108"
+              text-anchor="middle"
+              font-family="Arial Black,Arial"
+              font-weight="900"
+              font-size="16"
+              fill="#fff"
+              letter-spacing="2"
+            >
+              CITROËN
+            </text>
+          </svg>
+          <span>CITROËN</span>
+        </div>
+
+        <!-- IVECO -->
+        <div class="brand-card">
+          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="120" rx="8" fill="#0057a8" />
+            <text
+              x="100"
+              y="74"
+              text-anchor="middle"
+              font-family="Arial Black,Arial"
+              font-weight="900"
+              font-size="40"
+              fill="#fff"
+              letter-spacing="2"
+            >
+              IVECO
+            </text>
+          </svg>
+          <span>IVECO</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ SERVICES ════════════════════════════ -->
+    <section id="services">
+      <p class="section-label">Ne Sunuyoruz</p>
+      <h2 class="section-title">Hizmetlerimiz</h2>
+      <p class="section-sub">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Hizmetlerimizle
+        yanınızdayız.
+      </p>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🔩</div>
+          <h3>Orijinal Yedek Parça</h3>
+          <p>
+            Fiat, Renault, Ford, Peugeot, Citroën ve Iveco için fabrika çıkışlı
+            orijinal parçaları temin ediyoruz. Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🔄</div>
+          <h3>OEM Eşdeğer Parça</h3>
+          <p>
+            Orijinal kalitede, uygun fiyatlı OEM eşdeğer ürünler. Ut enim ad
+            minim veniam, quis nostrud exercitation ullamco laboris nisi aliqua.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🚚</div>
+          <h3>Hızlı Kargo & Teslimat</h3>
+          <p>
+            Türkiye genelinde 48 saat içinde kapınıza teslimat. Lorem ipsum
+            dolor sit amet consectetur adipiscing elit sed eiusmod tempor.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🔍</div>
+          <h3>Parça Sorgulama</h3>
+          <p>
+            Şase numarası veya OEM kodu ile anlık parça sorgulama ve fiyat
+            bilgisi hizmeti sunuyoruz. Duis aute irure dolor in reprehenderit
+            voluptate.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🛠️</div>
+          <h3>Teknik Destek</h3>
+          <p>
+            Deneyimli ekibimizle telefon ve WhatsApp üzerinden teknik destek.
+            Excepteur sint occaecat cupidatat non proident sunt culpa.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">📦</div>
+          <h3>Toplu Sipariş & Bayi</h3>
+          <p>
+            Oto-elektrikçi, tamirhaneler ve bayiler için özel fiyatlandırma.
+            Lorem ipsum dolor consectetur adipiscing elit sed do eiusmod.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ WHY US ══════════════════════════════ -->
+    <section id="why">
+      <p class="section-label">Farkımız</p>
+      <h2 class="section-title">Neden İşGören Otomotiv?</h2>
+      <p class="section-sub">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna.
+      </p>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="icon">✅</div>
+          <h4>Garanti Güvencesi</h4>
+          <p>
+            Tüm ürünlerimiz 2 yıl garantilidir. Sorun yaşamanız durumunda
+            ücretsiz değişim sağlıyoruz.
+          </p>
+        </div>
+        <div class="why-card">
+          <div class="icon">💰</div>
+          <h4>Rekabetçi Fiyat</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipiscing elit sed do
+            eiusmod tempor incididunt ut labore.
+          </p>
+        </div>
+        <div class="why-card">
+          <div class="icon">🏆</div>
+          <h4>25 Yıllık Tecrübe</h4>
+          <p>
+            Sektörde 25 yılı aşkın deneyimimizle en doğru parçayı en kısa sürede
+            buluyoruz.
+          </p>
+        </div>
+        <div class="why-card">
+          <div class="icon">📞</div>
+          <h4>7/24 Destek Hattı</h4>
+          <p>
+            Acil parça ihtiyaçlarında 7 gün 24 saat ulaşabileceğiniz destek
+            hattı sunuyoruz.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ CONTACT ═════════════════════════════ -->
+    <section id="contact">
+      <p class="section-label">Bize Ulaşın</p>
+      <h2 class="section-title">İletişim</h2>
+      <p class="section-sub">
+        Parça sorgulamak, fiyat almak veya herhangi bir konuda bilgi için formu
+        doldurun; en kısa sürede geri dönelim.
+      </p>
+
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h3>İletişim Bilgileri</h3>
+
+          <div class="info-row">
+            <div class="ico">📍</div>
+            <div>
+              <p>Adres</p>
+              <p>Atatürk Mah. Sanayi Cad. No: 42/A<br />Bağcılar / İstanbul</p>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="ico">📞</div>
+            <div>
+              <p>Telefon</p>
+              <p>+90 (212) 000 00 00</p>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="ico">💬</div>
+            <div>
+              <p>WhatsApp</p>
+              <p>+90 (530) 000 00 00</p>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="ico">✉️</div>
+            <div>
+              <p>E-posta</p>
+              <p>info@isgorenoto.com</p>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="ico">🕐</div>
+            <div>
+              <p>Çalışma Saatleri</p>
+              <p>Pzt – Cmt: 08:00 – 18:30</p>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" onsubmit="handleForm(event)">
+          <input type="text" placeholder="Adınız Soyadınız" required />
+          <input type="tel" placeholder="Telefon Numaranız" required />
+          <input type="email" placeholder="E-posta Adresiniz" />
+          <select>
+            <option value="">-- Marka Seçin --</option>
+            <option>Fiat</option>
+            <option>Renault</option>
+            <option>Ford</option>
+            <option>Peugeot</option>
+            <option>Citroën</option>
+            <option>Iveco</option>
+          </select>
+          <input type="text" placeholder="Model & Yıl (örn: Fiat Doblo 2019)" />
+          <textarea
+            placeholder="Parça adı, OEM kodu veya talebinizi yazın…"
+          ></textarea>
+          <button type="submit">Teklif İste →</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ FOOTER ══════════════════════════════ -->
+    <footer>
+      <p>
+        © 2026 <strong>İşGören Otomotiv</strong> – Tüm hakları saklıdır. | Fiat
+        · Renault · Ford · Peugeot · Citroën · Iveco Yedek Parça
+      </p>
+    </footer>
+
+    <!-- Scroll to top -->
+    <button
+      id="scrollTop"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    >
+      ↑
+    </button>
+
+    <script>
+      // Scroll-to-top visibility
+      window.addEventListener("scroll", () => {
+        document
+          .getElementById("scrollTop")
+          .classList.toggle("visible", window.scrollY > 400);
+      });
+
+      // Form submit
+      function handleForm(e) {
+        e.preventDefault();
+        alert("Talebiniz alındı! En kısa sürede sizi arayacağız.");
+        e.target.reset();
+      }
+    </script>
+  </body>
+</html>
