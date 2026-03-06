@@ -486,6 +486,24 @@
         background: var(--red);
       }
 
+      .contact-form input.invalid,
+      .contact-form textarea.invalid,
+      .contact-form select.invalid {
+        border-color: #d93025;
+      }
+
+      .contact-form input.valid,
+      .contact-form textarea.valid,
+      .contact-form select.valid {
+        border-color: #1e8e3e;
+      }
+
+      .form-status {
+        font-size: 0.9rem;
+        color: #555;
+        min-height: 1.2rem;
+      }
+
       /* ── FOOTER ──────────────────────────────── */
       footer {
         background: var(--dark);
@@ -915,11 +933,21 @@
           </div>
         </div>
 
-        <form class="contact-form" onsubmit="handleForm(event)">
-          <input type="text" placeholder="Adınız Soyadınız" required />
-          <input type="tel" placeholder="Telefon Numaranız" required />
-          <input type="email" placeholder="E-posta Adresiniz" />
-          <select>
+        <form class="contact-form" id="contactForm">
+          <input
+            type="text"
+            id="fullName"
+            placeholder="Adınız Soyadınız"
+            required
+          />
+          <input
+            type="tel"
+            id="phone"
+            placeholder="Telefon Numaranız"
+            required
+          />
+          <input type="email" id="email" placeholder="E-posta Adresiniz" />
+          <select id="brand" required>
             <option value="">-- Marka Seçin --</option>
             <option>Fiat</option>
             <option>Renault</option>
@@ -928,11 +956,18 @@
             <option>Citroën</option>
             <option>Iveco</option>
           </select>
-          <input type="text" placeholder="Model & Yıl (örn: Fiat Doblo 2019)" />
+          <input
+            type="text"
+            id="model"
+            placeholder="Model & Yıl (örn: Fiat Doblo 2019)"
+          />
           <textarea
+            id="message"
             placeholder="Parça adı, OEM kodu veya talebinizi yazın…"
+            required
           ></textarea>
           <button type="submit">Teklif İste →</button>
+          <p class="form-status" id="formStatus"></p>
         </form>
       </div>
     </section>
@@ -940,7 +975,7 @@
     <!-- ═══════════════════════════ FOOTER ══════════════════════════════ -->
     <footer>
       <p>
-        © 2026 <strong>İşGören Otomotiv</strong> – Tüm hakları saklıdır. | Fiat
+        © 2026 <strong>İşgören Otomotiv</strong> – Tüm hakları saklıdır. | Fiat
         · Renault · Ford · Peugeot · Citroën · Iveco Yedek Parça
       </p>
     </footer>
@@ -953,6 +988,8 @@
       ↑
     </button>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
       // Scroll-to-top visibility
       window.addEventListener("scroll", () => {
@@ -961,12 +998,218 @@
           .classList.toggle("visible", window.scrollY > 400);
       });
 
-      // Form submit
-      function handleForm(e) {
-        e.preventDefault();
-        alert("Talebiniz alındı! En kısa sürede sizi arayacağız.");
-        e.target.reset();
+      // EmailJS setup:
+      // 1) https://www.emailjs.com/ uzerinden hesap ac
+      // 2) GoDaddy e-posta hesabini Email Service olarak bagla
+      // 3) Asagidaki kimlikleri kendi panelinden doldur
+      const EMAILJS_PUBLIC_KEY = "REPLACE_WITH_PUBLIC_KEY";
+      const EMAILJS_SERVICE_ID = "REPLACE_WITH_SERVICE_ID";
+      const EMAILJS_TEMPLATE_ID = "REPLACE_WITH_TEMPLATE_ID";
+
+      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+      const contactForm = document.getElementById("contactForm");
+      const formStatus = document.getElementById("formStatus");
+      const fullNameInput = document.getElementById("fullName");
+      const phoneInput = document.getElementById("phone");
+      const emailInput = document.getElementById("email");
+      const brandInput = document.getElementById("brand");
+      const modelInput = document.getElementById("model");
+      const messageInput = document.getElementById("message");
+
+      function setFieldState(field, isValid, errorMessage) {
+        field.classList.remove("valid", "invalid");
+        if (isValid) {
+          field.classList.add("valid");
+          field.setCustomValidity("");
+          return true;
+        }
+
+        field.classList.add("invalid");
+        field.setCustomValidity(errorMessage);
+        return false;
       }
+
+      function validateFullName() {
+        const value = fullNameInput.value.trim();
+        const nameRegex = /^(?=.{2,}$)[\p{L}\s'-]+$/u;
+        if (!value) {
+          return setFieldState(
+            fullNameInput,
+            false,
+            "Ad soyad zorunludur.",
+          );
+        }
+        if (value.split(/\s+/).length < 2) {
+          return setFieldState(
+            fullNameInput,
+            false,
+            "Lutfen ad ve soyad girin.",
+          );
+        }
+        if (!nameRegex.test(value)) {
+          return setFieldState(
+            fullNameInput,
+            false,
+            "Ad soyad gecerli karakterler icermelidir.",
+          );
+        }
+        return setFieldState(fullNameInput, true, "");
+      }
+
+      function validatePhone() {
+        const value = phoneInput.value.trim();
+        const digits = value.replace(/\D/g, "");
+        if (!value) {
+          return setFieldState(phoneInput, false, "Telefon zorunludur.");
+        }
+        if (digits.length < 10 || digits.length > 15) {
+          return setFieldState(
+            phoneInput,
+            false,
+            "Telefon numarasi 10-15 hane arasinda olmalidir.",
+          );
+        }
+        return setFieldState(phoneInput, true, "");
+      }
+
+      function validateEmail() {
+        const value = emailInput.value.trim();
+        if (!value) {
+          return setFieldState(emailInput, true, "");
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        if (!emailRegex.test(value)) {
+          return setFieldState(
+            emailInput,
+            false,
+            "Lutfen gecerli bir e-posta adresi girin.",
+          );
+        }
+        return setFieldState(emailInput, true, "");
+      }
+
+      function validateBrand() {
+        const value = brandInput.value;
+        if (!value) {
+          return setFieldState(brandInput, false, "Lutfen marka secin.");
+        }
+        return setFieldState(brandInput, true, "");
+      }
+
+      function validateModel() {
+        const value = modelInput.value.trim();
+        if (!value) {
+          return setFieldState(modelInput, true, "");
+        }
+        if (value.length < 2) {
+          return setFieldState(
+            modelInput,
+            false,
+            "Model bilgisi en az 2 karakter olmalidir.",
+          );
+        }
+        return setFieldState(modelInput, true, "");
+      }
+
+      function validateMessage() {
+        const value = messageInput.value.trim();
+        if (!value) {
+          return setFieldState(messageInput, false, "Talep mesaji zorunludur.");
+        }
+        if (value.length < 10) {
+          return setFieldState(
+            messageInput,
+            false,
+            "Mesaj en az 10 karakter olmalidir.",
+          );
+        }
+        return setFieldState(messageInput, true, "");
+      }
+
+      const validators = [
+        { field: fullNameInput, validate: validateFullName },
+        { field: phoneInput, validate: validatePhone },
+        { field: emailInput, validate: validateEmail },
+        { field: brandInput, validate: validateBrand },
+        { field: modelInput, validate: validateModel },
+        { field: messageInput, validate: validateMessage },
+      ];
+
+      validators.forEach(({ field, validate }) => {
+        field.addEventListener("change", () => {
+          validate();
+          field.reportValidity();
+        });
+      });
+
+      function validateAllFields(showNativeMessages = false) {
+        let isFormValid = true;
+        validators.forEach(({ field, validate }) => {
+          const isValid = validate();
+          if (!isValid) {
+            isFormValid = false;
+            if (showNativeMessages) {
+              field.reportValidity();
+            }
+          }
+        });
+        return isFormValid;
+      }
+
+      contactForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        if (!validateAllFields(true)) {
+          formStatus.textContent = "Lutfen hatali alanlari duzeltin.";
+          return;
+        }
+
+        const confirmResult = await Swal.fire({
+          title: "Formu gondermek istiyor musunuz?",
+          text: "Bilgileriniz teklif icin e-posta olarak iletilecek.",
+          icon: "question",
+          showCancelButton: true,
+          confirmButtonText: "Evet, gonder",
+          cancelButtonText: "Vazgec",
+          reverseButtons: true,
+        });
+
+        if (!confirmResult.isConfirmed) {
+          formStatus.textContent = "Gonderim iptal edildi.";
+          return;
+        }
+
+        const formData = {
+          to_email: "umutbayrak88@gmail.com",
+          from_name: fullNameInput.value.trim(),
+          from_phone: phoneInput.value.trim(),
+          from_email: emailInput.value.trim() || "Belirtilmedi",
+          vehicle_brand: brandInput.value || "Belirtilmedi",
+          vehicle_model: modelInput.value.trim() || "Belirtilmedi",
+          request_message: messageInput.value.trim() || "Belirtilmedi",
+          submitted_at: new Date().toLocaleString("tr-TR"),
+        };
+
+        formStatus.textContent = "Gonderiliyor...";
+
+        try {
+          await emailjs.send(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_TEMPLATE_ID,
+            formData,
+          );
+          formStatus.textContent = "Talebiniz basariyla gonderildi.";
+          contactForm.reset();
+          [fullNameInput, phoneInput, emailInput, brandInput, modelInput, messageInput].forEach(
+            (field) => field.classList.remove("valid", "invalid"),
+          );
+        } catch (err) {
+          console.error("Mail gonderim hatasi:", err);
+          formStatus.textContent =
+            "Mail gonderilemedi. Lutfen bilgileri kontrol edip tekrar deneyin.";
+        }
+      });
     </script>
   </body>
 </html>
