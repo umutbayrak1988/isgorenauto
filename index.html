@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>İşgören Otomotiv – Yedek Parça</title>
+    <title>İşgören Otomotiv – Orijinal &amp; Premium Yedek Parça</title>
     <style>
       *,
       *::before,
@@ -44,16 +44,25 @@
         align-items: center;
         justify-content: space-between;
         padding: 0 6%;
-        height: 68px;
+        height: 125px;
         z-index: 100;
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
       }
 
       .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
         font-size: 1.45rem;
         font-weight: 800;
         color: #fff;
         letter-spacing: 1px;
+        text-decoration: none;
+      }
+
+      .nav-logo img {
+        height: 120px;
+        width: auto;
       }
 
       .nav-logo span {
@@ -270,9 +279,10 @@
         box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
       }
 
-      .brand-card svg {
-        width: 70px;
-        height: 50px;
+      .brand-card img {
+        width: 90px;
+        height: 90px;
+        object-fit: contain;
       }
 
       .brand-card span {
@@ -544,14 +554,187 @@
         opacity: 1;
         pointer-events: auto;
       }
+
+      /* ── WHATSAPP BUTTON ─────────────────── */
+      .whatsapp-btn {
+        position: fixed;
+        bottom: 1.8rem;
+        left: 1.8rem;
+        width: 56px;
+        height: 56px;
+        background: #25d366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+        z-index: 200;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .whatsapp-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .whatsapp-btn svg {
+        width: 30px;
+        height: 30px;
+        fill: #fff;
+      }
+
+      /* ── ABOUT ───────────────────────────────── */
+      #about {
+        background: var(--gray);
+      }
+
+      .about-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3.5rem;
+        max-width: 1100px;
+        margin: 0 auto;
+        align-items: center;
+      }
+
+      @media (max-width: 768px) {
+        .about-wrapper {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .about-text h3 {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--dark);
+        margin-bottom: 1.2rem;
+        line-height: 1.3;
+      }
+
+      .about-text h3 span {
+        color: var(--accent);
+      }
+
+      .about-text p {
+        color: #555;
+        font-size: 0.95rem;
+        line-height: 1.85;
+        margin-bottom: 1rem;
+      }
+
+      .about-highlights {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-top: 1.6rem;
+      }
+
+      .about-highlight {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+
+      .about-highlight .icon {
+        width: 42px;
+        height: 42px;
+        background: linear-gradient(135deg, var(--accent), var(--red));
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+      }
+
+      .about-highlight p {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--dark);
+        margin: 0;
+      }
+
+      .about-visual {
+        position: relative;
+      }
+
+      .about-card {
+        background: linear-gradient(135deg, var(--dark), var(--mid));
+        border-radius: 18px;
+        padding: 2.5rem;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .about-card::before {
+        content: "";
+        position: absolute;
+        top: -40px;
+        right: -40px;
+        width: 160px;
+        height: 160px;
+        background: var(--accent);
+        border-radius: 50%;
+        opacity: 0.12;
+      }
+
+      .about-card .big-number {
+        font-size: 4rem;
+        font-weight: 900;
+        color: var(--accent);
+        line-height: 1;
+        margin-bottom: 0.3rem;
+      }
+
+      .about-card .big-label {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 1.8rem;
+        color: #cde;
+      }
+
+      .about-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.2rem;
+      }
+
+      .about-stat {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 12px;
+        padding: 1.2rem 0.8rem;
+      }
+
+      .about-stat h4 {
+        font-size: 1.6rem;
+        font-weight: 900;
+        color: var(--accent);
+      }
+
+      .about-stat p {
+        font-size: 0.78rem;
+        color: #9ab;
+        margin-top: 0.25rem;
+      }
     </style>
   </head>
   <body>
     <!-- ═══════════════════════════ NAVBAR ══════════════════════════════ -->
     <nav>
-      <div class="nav-logo">İş<span>Gören</span> Otomotiv</div>
+      <div class="nav-logo">
+        <img
+          src="root/images/logo-transparent.png"
+          alt="İşGören Otomotiv Logo"
+        />
+        <span>İşgören </span>Otomotiv
+      </div>
       <ul>
         <li><a href="#hero">Ana Sayfa</a></li>
+        <li><a href="#about">Hakkımızda</a></li>
         <li><a href="#brands">Markalar</a></li>
         <li><a href="#services">Hizmetler</a></li>
         <li><a href="#why">Neden Biz</a></li>
@@ -562,14 +745,17 @@
     <!-- ═══════════════════════════ HERO ════════════════════════════════ -->
     <section id="hero">
       <div class="hero-content">
-        <div class="hero-badge">Güvenilir Yedek Parça Tedarikçisi</div>
+        <div class="hero-badge">
+          Toptancı ve Perakendeciler İçin Orijinal &amp; Premium Yedek Parça
+        </div>
         <h1>
-          Aracınız İçin <span>En Doğru Parça</span><br />En Hızlı Teslimat
+          Güvenilir Toptan <br /><span>Yedek Parça</span> <br />Tedarikçiniz
         </h1>
         <p>
-          Fiat, Renault, Ford, Peugeot, Citroën ve Iveco modellerine özel
-          orijinal ve eşdeğer yedek parça çözümleri. 25 yılı aşkın sektör
-          deneyimiyle hizmetinizdeyiz.
+          Yetkili bayilerden ve doğrudan ithalat kanallarıyla temin ettiğimiz
+          %100 orijinal ve premium marka yedek parçaları, oto yedek parça
+          satıcılarına ve toptancılara rekabetçi fiyatlar, yüksek kalite ve
+          hızlı teslimat ile sunuyoruz.
         </p>
         <div class="btn-group">
           <a href="#contact" class="btn btn-primary">Teklif Al</a>
@@ -579,7 +765,7 @@
     </section>
 
     <!-- ═══════════════════════════ STATS ═══════════════════════════════ -->
-    <div id="stats">
+    <!-- <div id="stats">
       <div class="stats-grid">
         <div class="stat-item">
           <h3>25+</h3>
@@ -603,166 +789,50 @@
         </div>
       </div>
     </div>
-
+ -->
     <!-- ═══════════════════════════ BRANDS ══════════════════════════════ -->
     <section id="brands">
       <p class="section-label">Çalıştığımız Markalar</p>
-      <h2 class="section-title">Uzman Olduğumuz Marka Ailesi</h2>
+      <h2 class="section-title">Uzman Olduğumuz Markalar</h2>
       <p class="section-sub">
-        Aşağıdaki markaların tüm model aralıkları için orijinal ve OEM eşdeğer
-        parçaları stokta bulunduruyoruz.
+        • Fiat • Renault • Ford • Peugeot • Citroën • Opel • Iveco markalarının
+        tüm modelleri için orijinal ve OEM eşdeğer yedek parçaları yetkili bayi
+        ve ithalat kanallarımızla temin ediyoruz.
       </p>
       <div class="brands-grid">
         <!-- FIAT -->
         <div class="brand-card">
-          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-            <rect width="200" height="120" rx="8" fill="#cc0000" />
-            <text
-              x="100"
-              y="72"
-              text-anchor="middle"
-              font-family="Arial Black,Arial"
-              font-weight="900"
-              font-size="52"
-              fill="#fff"
-            >
-              FIAT
-            </text>
-          </svg>
-          <span>FIAT</span>
+          <img src="root/images/fiat-logo.png" alt="Fiat" />
         </div>
 
         <!-- RENAULT -->
         <div class="brand-card">
-          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-            <rect width="200" height="120" rx="8" fill="#f5c000" />
-            <!-- Renault diamond -->
-            <polygon
-              points="100,12 134,60 100,108 66,60"
-              fill="none"
-              stroke="#fff"
-              stroke-width="7"
-            />
-            <polygon points="100,25 122,60 100,95 78,60" fill="#fff" />
-            <polygon points="100,38 111,60 100,82 89,60" fill="#f5c000" />
-          </svg>
-          <span>RENAULT</span>
+          <img src="root/images/renault-logo.png" alt="Renault" />
         </div>
 
         <!-- FORD -->
         <div class="brand-card">
-          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-            <rect width="200" height="120" rx="8" fill="#003388" />
-            <ellipse
-              cx="100"
-              cy="60"
-              rx="88"
-              ry="42"
-              fill="#003388"
-              stroke="#fff"
-              stroke-width="5"
-            />
-            <text
-              x="100"
-              y="74"
-              text-anchor="middle"
-              font-family="'Ford Antenna',Georgia,serif"
-              font-style="italic"
-              font-weight="700"
-              font-size="46"
-              fill="#fff"
-            >
-              Ford
-            </text>
-          </svg>
-          <span>FORD</span>
+          <img src="root/images/ford-logo.png" alt="Ford" />
         </div>
 
         <!-- PEUGEOT -->
         <div class="brand-card">
-          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-            <rect width="200" height="120" rx="8" fill="#1a1a1a" />
-            <!-- simplified lion silhouette placeholder -->
-            <text
-              x="100"
-              y="58"
-              text-anchor="middle"
-              font-size="36"
-              fill="#c8a951"
-            >
-              🦁
-            </text>
-            <text
-              x="100"
-              y="98"
-              text-anchor="middle"
-              font-family="Arial Black,Arial"
-              font-weight="900"
-              font-size="22"
-              fill="#c8a951"
-              letter-spacing="3"
-            >
-              PEUGEOT
-            </text>
-          </svg>
-          <span>PEUGEOT</span>
+          <img src="root/images/peugeot-logo.png" alt="Peugeot" />
         </div>
 
         <!-- CITROËN -->
         <div class="brand-card">
-          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-            <rect width="200" height="120" rx="8" fill="#8b0000" />
-            <!-- Double chevron -->
-            <polyline
-              points="60,30 100,55 140,30"
-              fill="none"
-              stroke="#fff"
-              stroke-width="11"
-              stroke-linejoin="round"
-              stroke-linecap="round"
-            />
-            <polyline
-              points="60,55 100,80 140,55"
-              fill="none"
-              stroke="#fff"
-              stroke-width="11"
-              stroke-linejoin="round"
-              stroke-linecap="round"
-            />
-            <text
-              x="100"
-              y="108"
-              text-anchor="middle"
-              font-family="Arial Black,Arial"
-              font-weight="900"
-              font-size="16"
-              fill="#fff"
-              letter-spacing="2"
-            >
-              CITROËN
-            </text>
-          </svg>
-          <span>CITROËN</span>
+          <img src="root/images/citroen-logo.png" alt="Citroën" />
+        </div>
+
+        <!-- OPEL -->
+        <div class="brand-card">
+          <img src="root/images/opel-logo.png" alt="Opel" />
         </div>
 
         <!-- IVECO -->
         <div class="brand-card">
-          <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-            <rect width="200" height="120" rx="8" fill="#0057a8" />
-            <text
-              x="100"
-              y="74"
-              text-anchor="middle"
-              font-family="Arial Black,Arial"
-              font-weight="900"
-              font-size="40"
-              fill="#fff"
-              letter-spacing="2"
-            >
-              IVECO
-            </text>
-          </svg>
-          <span>IVECO</span>
+          <img src="root/images/iveco-logo.png" alt="Iveco" />
         </div>
       </div>
     </section>
@@ -772,36 +842,35 @@
       <p class="section-label">Ne Sunuyoruz</p>
       <h2 class="section-title">Hizmetlerimiz</h2>
       <p class="section-sub">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Hizmetlerimizle
-        yanınızdayız.
+        Toptancı ve perakendeci iş ortaklarımıza sunduğumuz hizmetler
       </p>
       <div class="services-grid">
         <div class="service-card">
           <div class="service-icon">🔩</div>
           <h3>Orijinal Yedek Parça</h3>
           <p>
-            Fiat, Renault, Ford, Peugeot, Citroën ve Iveco için fabrika çıkışlı
-            orijinal parçaları temin ediyoruz. Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit.
+            Yetkili bayilerden ve doğrudan ithalat kanallarımızla temin
+            ettiğimiz %100 orijinal yedek parçaları Fiat, Renault, Ford,
+            Peugeot, Citroën, Opel ve Iveco markaları için sunuyoruz.
           </p>
         </div>
 
         <div class="service-card">
           <div class="service-icon">🔄</div>
-          <h3>OEM Eşdeğer Parça</h3>
+          <h3>Premium Kalite Eşdeğer Parça</h3>
           <p>
-            Orijinal kalitede, uygun fiyatlı OEM eşdeğer ürünler. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi aliqua.
+            Orijinal kalite standartlarında, daha rekabetçi fiyatlı premium
+            marka eşdeğer parçalar. Kalite ve fiyat dengesi arayan toptancı ve
+            perakendeciler için ideal çözümler.
           </p>
         </div>
 
         <div class="service-card">
           <div class="service-icon">🚚</div>
-          <h3>Hızlı Kargo & Teslimat</h3>
+          <h3>Hızlı Tedarik &amp; Teslimat</h3>
           <p>
-            Türkiye genelinde 48 saat içinde kapınıza teslimat. Lorem ipsum
-            dolor sit amet consectetur adipiscing elit sed eiusmod tempor.
+            Güçlü tedarikçi ağımız sayesinde binlerce parçayı Türkiye geneline
+            hızlı ve güvenilir teslimat sağlıyoruz.
           </p>
         </div>
 
@@ -809,9 +878,8 @@
           <div class="service-icon">🔍</div>
           <h3>Parça Sorgulama</h3>
           <p>
-            Şase numarası veya OEM kodu ile anlık parça sorgulama ve fiyat
-            bilgisi hizmeti sunuyoruz. Duis aute irure dolor in reprehenderit
-            voluptate.
+            OE &amp; OEM kodu ile anında parça sorgulama ve fiyat teklifi
+            veriyoruz. Hızlı yanıt için bize ulaşmanız yeterli.
           </p>
         </div>
 
@@ -819,18 +887,91 @@
           <div class="service-icon">🛠️</div>
           <h3>Teknik Destek</h3>
           <p>
-            Deneyimli ekibimizle telefon ve WhatsApp üzerinden teknik destek.
-            Excepteur sint occaecat cupidatat non proident sunt culpa.
+            16 yıllık sektör tecrübemizle telefon ve WhatsApp üzerinden teknik
+            destek sağlıyoruz.
           </p>
         </div>
 
         <div class="service-card">
           <div class="service-icon">📦</div>
-          <h3>Toplu Sipariş & Bayi</h3>
+          <h3>Toplu Sipariş &amp; Bayi İşbirliği</h3>
           <p>
-            Oto-elektrikçi, tamirhaneler ve bayiler için özel fiyatlandırma.
-            Lorem ipsum dolor consectetur adipiscing elit sed do eiusmod.
+            Oto yedek parça satıcıları ve toptancılar için özel fiyatlandırma ve
+            düzenli tedarik anlaşmaları sunuyoruz. Uzun vadeli iş ortaklığı
+            hedefliyoruz.
           </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ ABOUT ═══════════════════════════════ -->
+    <section id="about">
+      <p class="section-label">Hakkımızda</p>
+      <h2 class="section-title">Bizi Yakından Tanıyın</h2>
+      <p class="section-sub">
+        Sektördeki birikimimizi yeni bir vizyon ve güçlü bir altyapıyla
+        buluşturuyoruz.
+      </p>
+      <div class="about-wrapper">
+        <div class="about-text">
+          <h3>16 Yıllık Deneyim,<br /><span>Yeni Bir Güç</span></h3>
+          <p>
+            İşgören Otomotiv olarak sektördeki 16 yıllık birikimi yeni bir
+            şirket çatısı altında toplayarak faaliyetlerimize başladık. Fiat,
+            Renault, Ford, Peugeot, Citroën, Opel ve Iveco markalarına
+            odaklanarak toptancı ve perakendeci firmalara hizmet veriyoruz.
+          </p>
+          <p>
+            Tüm ürünlerimizi yetkili bayilerden ve doğrudan ithalat kanallarıyla
+            temin ediyoruz. Bu sayede %100 orijinal ve premium kalite parçaları
+            sahte ürün riski olmadan sunabiliyoruz. Güçlü tedarikçi ağımız
+            sayesinde binlerce parça koduna hızlıca ulaşabiliyor ve rekabetçi
+            fiyatlarla teklif verebiliyoruz.
+          </p>
+          <p>
+            Amacımız; oto yedek parça satıcılarına ve toptancılara güvenilir,
+            hızlı ve uzun vadeli bir iş ortağı olmaktır. İthalat ve ihracat
+            faaliyetlerimizi geliştirerek iş ortaklarımıza daha geniş ürün gamı
+            ve avantajlı koşullar sunmayı hedefliyoruz.
+          </p>
+          <div class="about-highlights">
+            <div class="about-highlight">
+              <div class="icon">✅</div>
+              <p>%100 Orijinal Parça</p>
+            </div>
+            <div class="about-highlight">
+              <div class="icon">🌍</div>
+              <p>İthalat &amp; İhracat</p>
+            </div>
+            <div class="about-highlight">
+              <div class="icon">🤝</div>
+              <p>Uzun Vadeli Ortaklık</p>
+            </div>
+            <div class="about-highlight">
+              <div class="icon">💰</div>
+              <p>Rekabetçi Fiyatlar</p>
+            </div>
+          </div>
+        </div>
+        <div class="about-visual">
+          <div class="about-card">
+            <div class="big-number">16+</div>
+            <div class="big-label">Yıllık Sektör Deneyimi</div>
+            <div class="about-stats">
+              <div class="about-stat">
+                <h4>7</h4>
+                <p>Desteklenen Marka</p>
+              </div>
+              <div class="about-stat">
+                <h4>1000+</h4>
+                <p>Parça Çeşidi</p>
+              </div>
+              <div class="about-stat">
+                <h4>%100</h4>
+                <p>Orijinal Kalite</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -838,42 +979,44 @@
     <!-- ═══════════════════════════ WHY US ══════════════════════════════ -->
     <section id="why">
       <p class="section-label">Farkımız</p>
-      <h2 class="section-title">Neden İşGören Otomotiv?</h2>
+      <h2 class="section-title">Neden İşgören Otomotiv?</h2>
       <p class="section-sub">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-        tempor incididunt ut labore et dolore magna.
+        Toptancı ve perakendeci iş ortaklarımıza sunduğumuz farklar.
       </p>
       <div class="why-grid">
         <div class="why-card">
           <div class="icon">✅</div>
-          <h4>Garanti Güvencesi</h4>
+          <h4>Orijinallik Güvencesi</h4>
           <p>
-            Tüm ürünlerimiz 2 yıl garantilidir. Sorun yaşamanız durumunda
-            ücretsiz değişim sağlıyoruz.
+            Tüm ürünlerimizi yetkili bayilerden ve doğrudan ithalat
+            kanallarımızla temin ediyoruz. Sahte veya kalitesiz parça riski
+            olmadan %100 orijinal ve premium kalite ürünler sunuyoruz.
           </p>
         </div>
         <div class="why-card">
           <div class="icon">💰</div>
           <h4>Rekabetçi Fiyat</h4>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipiscing elit sed do
-            eiusmod tempor incididunt ut labore.
+            Güçlü tedarikçi ağımız sayesinde toptancı ve perakendecilere piyasa
+            koşullarına göre en rekabetçi fiyatları sunuyoruz. Toplu
+            siparişlerde özel avantajlar sağlıyoruz.
           </p>
         </div>
         <div class="why-card">
           <div class="icon">🏆</div>
-          <h4>25 Yıllık Tecrübe</h4>
+          <h4>16 Yıllık Tecrübe</h4>
           <p>
-            Sektörde 25 yılı aşkın deneyimimizle en doğru parçayı en kısa sürede
-            buluyoruz.
+            2010 yılında başlayan otomotiv yedek parça sektör tecrübesiyle, iş
+            ortaklarımızın her türlü parça ve teknik ihtiyacına hızlı ve doğru
+            çözümler üretiyoruz.
           </p>
         </div>
         <div class="why-card">
           <div class="icon">📞</div>
-          <h4>7/24 Destek Hattı</h4>
+          <h4>Hızlı ve Güvenilir Destek</h4>
           <p>
-            Acil parça ihtiyaçlarında 7 gün 24 saat ulaşabileceğiniz destek
-            hattı sunuyoruz.
+            Telefon ve WhatsApp üzerinden hızlı yanıt veriyoruz. Parça
+            sorgulama, teknik destek ve sipariş süreçlerinizde yanınızdayız.
           </p>
         </div>
       </div>
@@ -896,7 +1039,16 @@
             <div class="ico">📍</div>
             <div>
               <p>Adres</p>
-              <p>Atatürk Mah. Sanayi Cad. No: 42/A<br />Bağcılar / İstanbul</p>
+              <p>
+                <a
+                  href="https://maps.google.com/?q=%C4%B0%C3%A7erenk%C3%B6y+Mah.+Prof.+Dr.+Ali+Nihat+Tarlan+Cad.+S%C3%BCleyman+Ba%C5%9Fkan+%C4%B0%C5%9F+Merk.+No:84/12+Ata%C5%9Fehir+%C4%B0stanbul"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="color: inherit; text-decoration: none"
+                  >İçerenköy Mah. Prof. Dr. Ali Nihat Tarlan Cad.<br />Süleyman
+                  Başkan İş Merk. No:84/12<br />Ataşehir / İstanbul</a
+                >
+              </p>
             </div>
           </div>
 
@@ -904,15 +1056,13 @@
             <div class="ico">📞</div>
             <div>
               <p>Telefon</p>
-              <p>+90 (212) 000 00 00</p>
-            </div>
-          </div>
-
-          <div class="info-row">
-            <div class="ico">💬</div>
-            <div>
-              <p>WhatsApp</p>
-              <p>+90 (530) 000 00 00</p>
+              <p>
+                <a
+                  href="tel:+905366208287"
+                  style="color: inherit; text-decoration: none"
+                  >+90 536 620 82 87</a
+                >
+              </p>
             </div>
           </div>
 
@@ -920,7 +1070,13 @@
             <div class="ico">✉️</div>
             <div>
               <p>E-posta</p>
-              <p>info@isgorenoto.com</p>
+              <p>
+                <a
+                  href="mailto:mehmet@isgorenauto.com"
+                  style="color: inherit; text-decoration: none"
+                  >mehmet@isgorenauto.com</a
+                >
+              </p>
             </div>
           </div>
 
@@ -928,7 +1084,7 @@
             <div class="ico">🕐</div>
             <div>
               <p>Çalışma Saatleri</p>
-              <p>Pzt – Cmt: 08:00 – 18:30</p>
+              <p>Pzt – Cuma: 08:30 – 18:00</p>
             </div>
           </div>
         </div>
@@ -939,14 +1095,27 @@
             id="fullName"
             placeholder="Adınız Soyadınız"
             required
+            minlength="3"
+            maxlength="80"
+            autocomplete="name"
           />
           <input
             type="tel"
             id="phone"
-            placeholder="Telefon Numaranız"
             required
+            minlength="10"
+            maxlength="10"
+            pattern="5[0-9]{9}"
+            autocomplete="tel"
           />
-          <input type="email" id="email" placeholder="E-posta Adresiniz" />
+          <small style="color:#888;font-size:0.78rem;margin-top:-6px;display:block;">Başında 0 olmadan 10 haneli cep telefonu numaranızı giriniz.</small>
+          <input
+            type="email"
+            id="email"
+            placeholder="E-posta Adresiniz"
+            maxlength="120"
+            autocomplete="email"
+          />
           <select id="brand" required>
             <option value="">-- Marka Seçin --</option>
             <option>Fiat</option>
@@ -954,18 +1123,37 @@
             <option>Ford</option>
             <option>Peugeot</option>
             <option>Citroën</option>
+            <option>Opel</option>
             <option>Iveco</option>
           </select>
           <input
             type="text"
             id="model"
             placeholder="Model & Yıl (örn: Fiat Doblo 2019)"
+            maxlength="100"
           />
           <textarea
             id="message"
             placeholder="Parça adı, OEM kodu veya talebinizi yazın…"
             required
+            minlength="10"
+            maxlength="1000"
           ></textarea>
+          <!-- Honeypot - bot koruması -->
+          <input
+            type="text"
+            id="website"
+            name="website"
+            autocomplete="off"
+            tabindex="-1"
+            style="
+              position: absolute;
+              left: -9999px;
+              opacity: 0;
+              height: 0;
+              width: 0;
+            "
+          />
           <button type="submit">Teklif İste →</button>
           <p class="form-status" id="formStatus"></p>
         </form>
@@ -988,6 +1176,21 @@
       ↑
     </button>
 
+    <!-- WhatsApp -->
+    <a
+      href="https://wa.me/905366208287"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="whatsapp-btn"
+      aria-label="WhatsApp ile iletişime geçin"
+    >
+      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378L1.054 31.29l6.118-1.958A15.91 15.91 0 0 0 16.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.35 22.6c-.394 1.11-1.946 2.032-3.194 2.3-.856.182-1.974.326-5.74-1.234-4.818-1.994-7.92-6.876-8.162-7.194-.232-.318-1.952-2.6-1.952-4.958s1.234-3.52 1.672-4.002c.438-.482.958-.602 1.276-.602.318 0 .636.002.914.016.294.014.688-.112 1.076.82.394.952 1.354 3.312 1.472 3.552.12.24.198.52.038.838-.158.318-.238.518-.478.798-.24.278-.504.622-.72.834-.24.24-.488.498-.21.978.278.478 1.238 2.04 2.658 3.306 1.826 1.628 3.366 2.132 3.842 2.37.478.24.756.198 1.034-.118.278-.318 1.196-1.394 1.514-1.874.318-.478.636-.398 1.074-.238.438.158 2.794 1.316 3.272 1.556.478.238.796.358.914.556.12.198.12 1.152-.274 2.262z"
+        />
+      </svg>
+    </a>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
@@ -1002,9 +1205,9 @@
       // 1) https://www.emailjs.com/ uzerinden hesap ac
       // 2) GoDaddy e-posta hesabini Email Service olarak bagla
       // 3) Asagidaki kimlikleri kendi panelinden doldur
-      const EMAILJS_PUBLIC_KEY = "REPLACE_WITH_PUBLIC_KEY";
-      const EMAILJS_SERVICE_ID = "REPLACE_WITH_SERVICE_ID";
-      const EMAILJS_TEMPLATE_ID = "REPLACE_WITH_TEMPLATE_ID";
+      const EMAILJS_PUBLIC_KEY = "fBMQz0COo9FuVcKRN";
+      const EMAILJS_SERVICE_ID = "service_irwbhak";
+      const EMAILJS_TEMPLATE_ID = "template_s9l7uof";
 
       emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
@@ -1016,6 +1219,18 @@
       const brandInput = document.getElementById("brand");
       const modelInput = document.getElementById("model");
       const messageInput = document.getElementById("message");
+      const honeypotInput = document.getElementById("website");
+
+      // Rate limiting - localStorage ile kalıcı
+      let lastSubmitTime = parseInt(localStorage.getItem("lastSubmitTime")) || 0;
+      const SUBMIT_COOLDOWN = 900000; // 15 dakika
+
+      // Input sanitization - HTML etiketlerini temizle
+      function sanitize(str) {
+        const div = document.createElement("div");
+        div.textContent = str;
+        return div.innerHTML;
+      }
 
       function setFieldState(field, isValid, errorMessage) {
         field.classList.remove("valid", "invalid");
@@ -1032,12 +1247,14 @@
 
       function validateFullName() {
         const value = fullNameInput.value.trim();
-        const nameRegex = /^(?=.{2,}$)[\p{L}\s'-]+$/u;
         if (!value) {
+          return setFieldState(fullNameInput, false, "Ad soyad zorunludur.");
+        }
+        if (value.length < 3 || value.length > 80) {
           return setFieldState(
             fullNameInput,
             false,
-            "Ad soyad zorunludur.",
+            "Ad soyad 3-80 karakter arasinda olmalidir.",
           );
         }
         if (value.split(/\s+/).length < 2) {
@@ -1047,28 +1264,19 @@
             "Lutfen ad ve soyad girin.",
           );
         }
-        if (!nameRegex.test(value)) {
-          return setFieldState(
-            fullNameInput,
-            false,
-            "Ad soyad gecerli karakterler icermelidir.",
-          );
-        }
         return setFieldState(fullNameInput, true, "");
       }
 
       function validatePhone() {
         const value = phoneInput.value.trim();
-        const digits = value.replace(/\D/g, "");
         if (!value) {
           return setFieldState(phoneInput, false, "Telefon zorunludur.");
         }
-        if (digits.length < 10 || digits.length > 15) {
-          return setFieldState(
-            phoneInput,
-            false,
-            "Telefon numarasi 10-15 hane arasinda olmalidir.",
-          );
+        if (value.length !== 10) {
+          return setFieldState(phoneInput, false, "Telefon numarasi 10 haneli olmalidir.");
+        }
+        if (!value.startsWith("5")) {
+          return setFieldState(phoneInput, false, "Telefon numarasi 5 ile baslamalidir.");
         }
         return setFieldState(phoneInput, true, "");
       }
@@ -1078,13 +1286,8 @@
         if (!value) {
           return setFieldState(emailInput, true, "");
         }
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-        if (!emailRegex.test(value)) {
-          return setFieldState(
-            emailInput,
-            false,
-            "Lutfen gecerli bir e-posta adresi girin.",
-          );
+        if (value.length > 120) {
+          return setFieldState(emailInput, false, "E-posta adresi cok uzun.");
         }
         return setFieldState(emailInput, true, "");
       }
@@ -1102,11 +1305,11 @@
         if (!value) {
           return setFieldState(modelInput, true, "");
         }
-        if (value.length < 2) {
+        if (value.length < 2 || value.length > 100) {
           return setFieldState(
             modelInput,
             false,
-            "Model bilgisi en az 2 karakter olmalidir.",
+            "Model bilgisi 2-100 karakter arasinda olmalidir.",
           );
         }
         return setFieldState(modelInput, true, "");
@@ -1122,6 +1325,13 @@
             messageInput,
             false,
             "Mesaj en az 10 karakter olmalidir.",
+          );
+        }
+        if (value.length > 1000) {
+          return setFieldState(
+            messageInput,
+            false,
+            "Mesaj en fazla 1000 karakter olmalidir.",
           );
         }
         return setFieldState(messageInput, true, "");
@@ -1143,6 +1353,27 @@
         });
       });
 
+      // Telefon: sadece rakam, ilk karakter mutlaka 5, max 10 hane
+      phoneInput.addEventListener("beforeinput", (e) => {
+        if (e.inputType === "insertText" && e.data) {
+          // Rakam dışı tamamen engelle
+          if (!/^\d+$/.test(e.data)) { e.preventDefault(); return; }
+          // Alan boşsa veya tamamı seçiliyse ilk karakter 5 olmalı
+          const start = phoneInput.selectionStart;
+          const end = phoneInput.selectionEnd;
+          const current = phoneInput.value;
+          const willReplace = (start === 0 && end === current.length) || current.length === 0;
+          if (willReplace && e.data[0] !== "5") { e.preventDefault(); return; }
+          if (start === 0 && !willReplace && e.data[0] !== "5") { e.preventDefault(); return; }
+        }
+      });
+      phoneInput.addEventListener("input", () => {
+        let val = phoneInput.value.replace(/\D/g, "");
+        if (val.length > 0 && val[0] !== "5") val = "";
+        if (val.length > 10) val = val.slice(0, 10);
+        if (phoneInput.value !== val) phoneInput.value = val;
+      });
+
       function validateAllFields(showNativeMessages = false) {
         let isFormValid = true;
         validators.forEach(({ field, validate }) => {
@@ -1160,8 +1391,38 @@
       contactForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
+        // Honeypot kontrolü - bot doldurursa reddet
+        if (honeypotInput.value) {
+          formStatus.textContent = "";
+          return;
+        }
+
+        // Rate limiting
+        const now = Date.now();
+        if (now - lastSubmitTime < SUBMIT_COOLDOWN) {
+          const kalanMs = SUBMIT_COOLDOWN - (now - lastSubmitTime);
+          const kalanDk = Math.ceil(kalanMs / 60000);
+          formStatus.textContent =
+            "Zaten bir teklif gonderdiniz. Lutfen " + kalanDk + " dakika sonra tekrar deneyin.";
+          return;
+        }
+
         if (!validateAllFields(true)) {
           formStatus.textContent = "Lutfen hatali alanlari duzeltin.";
+          return;
+        }
+
+        const allowedBrands = [
+          "Fiat",
+          "Renault",
+          "Ford",
+          "Peugeot",
+          "Citro\u00ebn",
+          "Opel",
+          "Iveco",
+        ];
+        if (!allowedBrands.includes(brandInput.value)) {
+          formStatus.textContent = "Gecersiz marka secimi.";
           return;
         }
 
@@ -1181,29 +1442,40 @@
         }
 
         const formData = {
-          to_email: "umutbayrak88@gmail.com",
-          from_name: fullNameInput.value.trim(),
-          from_phone: phoneInput.value.trim(),
-          from_email: emailInput.value.trim() || "Belirtilmedi",
-          vehicle_brand: brandInput.value || "Belirtilmedi",
-          vehicle_model: modelInput.value.trim() || "Belirtilmedi",
-          request_message: messageInput.value.trim() || "Belirtilmedi",
+          to_email: "mehmet@isgorenauto.com",
+          from_name: sanitize(fullNameInput.value.trim()),
+          from_phone: sanitize(phoneInput.value.trim()),
+          from_email: sanitize(emailInput.value.trim()) || "Belirtilmedi",
+          vehicle_brand: sanitize(brandInput.value) || "Belirtilmedi",
+          vehicle_model: sanitize(modelInput.value.trim()) || "Belirtilmedi",
+          request_message:
+            sanitize(messageInput.value.trim()) || "Belirtilmedi",
           submitted_at: new Date().toLocaleString("tr-TR"),
         };
 
         formStatus.textContent = "Gonderiliyor...";
 
         try {
-          await emailjs.send(
-            EMAILJS_SERVICE_ID,
-            EMAILJS_TEMPLATE_ID,
-            formData,
-          );
-          formStatus.textContent = "Talebiniz basariyla gonderildi.";
+          await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formData);
+          lastSubmitTime = Date.now();
+          localStorage.setItem("lastSubmitTime", lastSubmitTime);
+          formStatus.textContent = "";
           contactForm.reset();
-          [fullNameInput, phoneInput, emailInput, brandInput, modelInput, messageInput].forEach(
-            (field) => field.classList.remove("valid", "invalid"),
-          );
+          [
+            fullNameInput,
+            phoneInput,
+            emailInput,
+            brandInput,
+            modelInput,
+            messageInput,
+          ].forEach((field) => field.classList.remove("valid", "invalid"));
+          await Swal.fire({
+            icon: "success",
+            title: "Talebiniz Alındı!",
+            text: "En kısa sürede sizinle iletişime geçeceğiz. Teşekkür ederiz.",
+            confirmButtonText: "Tamam",
+            confirmButtonColor: "#c8102e",
+          });
         } catch (err) {
           console.error("Mail gonderim hatasi:", err);
           formStatus.textContent =
