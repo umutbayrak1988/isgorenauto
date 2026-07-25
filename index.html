@@ -10,11 +10,12 @@
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
     <link rel="canonical" href="https://www.isgorenauto.com/" />
-    <link rel="icon" type="image/x-icon" href="root/images/favicon.ico" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="root/images/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="root/images/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="root/images/apple-touch-icon.png" />
-    <link rel="manifest" href="site.webmanifest" />
+    <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#c0392b" />
     <meta name="geo.region" content="TR-34" />
     <meta name="geo.placename" content="Ataşehir, İstanbul" />
@@ -169,13 +170,21 @@
       }
 
       .nav-viper {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         background: var(--accent);
         color: #fff !important;
-        padding: 0.4rem 1rem;
+        padding: 0.5rem 1.2rem;
         border-radius: 20px;
         font-weight: 700;
         font-size: 0.82rem;
         letter-spacing: 0.5px;
+        line-height: 1.3;
+        text-align: center;
+        text-decoration: none;
+        white-space: nowrap;
         transition: background 0.2s, transform 0.15s;
       }
 
@@ -701,6 +710,41 @@
       .whatsapp-btn:hover {
         transform: scale(1.1);
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .whatsapp-btn::before {
+        content: 'Teklif Al';
+        position: absolute;
+        bottom: calc(100% + 10px);
+        left: 50%;
+        transform: translateX(-50%);
+        background: #25d366;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 700;
+        padding: 0.45rem 0.9rem;
+        border-radius: 8px;
+        white-space: nowrap;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        pointer-events: none;
+        animation: tooltipBounce 2s ease-in-out infinite;
+      }
+
+      .whatsapp-btn::after {
+        content: '';
+        position: absolute;
+        bottom: calc(100% + 4px);
+        left: 50%;
+        transform: translateX(-50%);
+        border: 6px solid transparent;
+        border-top-color: #25d366;
+        pointer-events: none;
+        animation: tooltipBounce 2s ease-in-out infinite;
+      }
+
+      @keyframes tooltipBounce {
+        0%, 100% { transform: translateX(-50%) translateY(0); }
+        50% { transform: translateX(-50%) translateY(-4px); }
       }
 
       .whatsapp-btn svg {
@@ -1508,7 +1552,7 @@
         <li><a href="#services">Hizmetler</a></li>
         <li><a href="#why">Neden Biz</a></li>
         <li><a href="#contact">İletişim</a></li>
-        <li><a href="viper.html" class="nav-viper">Viper Ürünleri</a></li>
+        <li><a href="viper.html" class="nav-viper">Temizlik Makinası<br>Çözümleri</a></li>
       </ul>
     </nav>
     <div class="nav-overlay" id="navOverlay"></div>
@@ -1958,7 +2002,7 @@
       target="_blank"
       rel="noopener noreferrer"
       class="whatsapp-btn"
-      aria-label="WhatsApp ile iletişime geçin"
+      aria-label="Teklif Al - WhatsApp ile iletişime geçin"
     >
       <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
         <path

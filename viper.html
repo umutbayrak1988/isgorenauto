@@ -8,11 +8,12 @@
     <meta name="author" content="İşgören Motorlu Araçlar" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://www.isgorenauto.com/viper.html" />
-    <link rel="icon" type="image/x-icon" href="root/images/favicon.ico" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="root/images/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="root/images/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="root/images/apple-touch-icon.png" />
-    <link rel="manifest" href="site.webmanifest" />
+    <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#c0392b" />
 
     <meta property="og:type" content="website" />
@@ -614,6 +615,41 @@
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
       }
 
+      .vp-whatsapp::before {
+        content: 'Teklif Al';
+        position: absolute;
+        bottom: calc(100% + 10px);
+        left: 50%;
+        transform: translateX(-50%);
+        background: #25d366;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 700;
+        padding: 0.45rem 0.9rem;
+        border-radius: 8px;
+        white-space: nowrap;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        pointer-events: none;
+        animation: vpTooltipBounce 2s ease-in-out infinite;
+      }
+
+      .vp-whatsapp::after {
+        content: '';
+        position: absolute;
+        bottom: calc(100% + 4px);
+        left: 50%;
+        transform: translateX(-50%);
+        border: 6px solid transparent;
+        border-top-color: #25d366;
+        pointer-events: none;
+        animation: vpTooltipBounce 2s ease-in-out infinite;
+      }
+
+      @keyframes vpTooltipBounce {
+        0%, 100% { transform: translateX(-50%) translateY(0); }
+        50% { transform: translateX(-50%) translateY(-4px); }
+      }
+
       .vp-whatsapp svg { width: 30px; height: 30px; fill: #fff; }
 
       /* ── RESPONSIVE ──────────────────────────── */
@@ -722,11 +758,11 @@
 
       <div class="vp-filters">
         <button class="vp-filter-btn active" data-filter="all">Tümü</button>
+        <button class="vp-filter-btn" data-filter="zemin-binicili">Binicili Zemin Otomatları</button>
+        <button class="vp-filter-btn" data-filter="zemin-iticili">İticili Zemin Otomatları</button>
+        <button class="vp-filter-btn" data-filter="supurucu">Süpürücüler</button>
         <button class="vp-filter-btn" data-filter="supurge">Elektrikli Süpürgeler</button>
         <button class="vp-filter-btn" data-filter="hali">Halı Temizleme</button>
-        <button class="vp-filter-btn" data-filter="zemin-iticili">İticili Zemin Otomatları</button>
-        <button class="vp-filter-btn" data-filter="zemin-binicili">Binicili Zemin Otomatları</button>
-        <button class="vp-filter-btn" data-filter="supurucu">Süpürücüler</button>
         <button class="vp-filter-btn" data-filter="cila">Cila &amp; Parlatma</button>
         <button class="vp-filter-btn" data-filter="kurutucu">Kurutucu</button>
       </div>
@@ -738,7 +774,7 @@
           <img src="root/images/viper/viper-page6.jpeg" alt="Viper DSU Ticari Elektrikli Süpürge" class="vp-card-img" loading="lazy" />
           <div class="vp-card-body">
             <span class="vp-card-cat">Elektrikli Süpürge</span>
-            <h3>DSU Serisi – Ticari Elektrikli Süpürgeler</h3>
+            <h3>1.1 DSU Serisi – Ticari Elektrikli Süpürgeler</h3>
             <p>Ofisler, otel odaları, küçük restoranlar ve perakende alanları için günlük kullanıma uygun kompakt elektrikli süpürge. HEPA filtre, ECO modu ve kolay taşıma özelliği.</p>
             <div class="vp-specs">
               <span class="vp-spec">880W Motor</span>
@@ -754,7 +790,7 @@
           <img src="root/images/viper/viper-page7.jpeg" alt="Viper LSU Islak & Kuru Elektrikli Süpürge" class="vp-card-img" loading="lazy" />
           <div class="vp-card-body">
             <span class="vp-card-cat">Islak &amp; Kuru Süpürge</span>
-            <h3>LSU 135 / 255 / 375 – Islak &amp; Kuru Elektrikli Süpürgeler</h3>
+            <h3>1.2 LSU 135 / 255 / 375 – Islak &amp; Kuru Elektrikli Süpürgeler</h3>
             <p>Dayanıklı, yüksek vakum gücüne sahip profesyonel ıslak ve kuru elektrikli süpürge serisi. Drenaj hortumu, paslanmaz çelik gövde ve büyük arka tekerlekler.</p>
             <div class="vp-specs">
               <span class="vp-spec">1000–3000W</span>
@@ -769,7 +805,7 @@
           <img src="root/images/viper/viper-page9.jpeg" alt="Viper CAR275 Halı Temizleyici" class="vp-card-img" loading="lazy" />
           <div class="vp-card-body">
             <span class="vp-card-cat">Islak &amp; Kuru Süpürge</span>
-            <h3>CAR275 – Halı Temizleyici Süpürge</h3>
+            <h3>1.3 CAR275 – Halı Temizleyici Süpürge</h3>
             <p>Profesyonel halı temizliği için tasarlanmış güçlü ıslak ve kuru elektrikli süpürge. 2000W motor, paslanmaz çelik gövde ve yüksek vakum performansı.</p>
             <div class="vp-specs">
               <span class="vp-spec">2000W Motor</span>
@@ -784,7 +820,7 @@
           <img src="root/images/viper/viper-page8.jpeg" alt="Viper WOLF130 Halı Yıkama Makinesi" class="vp-card-img" loading="lazy" />
           <div class="vp-card-body">
             <span class="vp-card-cat">Halı Temizleme</span>
-            <h3>WOLF130 – Halı Yıkama Makinesi</h3>
+            <h3>2.1 WOLF130 – Halı Yıkama Makinesi</h3>
             <p>Düşük efor ile daha iyi görünüme sahip halılar elde etmeniz için tasarlandı. Taşınabilir özelliği ile günlük kullanımda her zaman yanınızda. Şeffaf el aleti ve ayrılabilen tanklar.</p>
             <div class="vp-specs">
               <span class="vp-spec">3.8L Temiz Su</span>
@@ -799,7 +835,7 @@
           <img src="root/images/viper/viper-page11.jpeg" alt="Viper CEX410 Halı Yıkama Makinesi" class="vp-card-img" loading="lazy" />
           <div class="vp-card-body">
             <span class="vp-card-cat">Halı Temizleme</span>
-            <h3>CEX410 – Profesyonel Halı Yıkama Makinesi</h3>
+            <h3>2.2 CEX410 – Profesyonel Halı Yıkama Makinesi</h3>
             <p>Sessiz ve üst düzey temizlik performansı ile halı ve döşemelerin temizliği için ideal. Güçlü vakum motoru sayesinde yüzeyde aşırı su bırakmaz, kuruma çok hızlıdır.</p>
             <div class="vp-specs">
               <span class="vp-spec">1850W Motor</span>
@@ -814,7 +850,7 @@
           <img src="root/images/viper/viper-page10.jpeg" alt="Viper BV3 Kurutma Makinesi" class="vp-card-img" loading="lazy" />
           <div class="vp-card-body">
             <span class="vp-card-cat">Kurutucu</span>
-            <h3>BV3 – Kurutma Makinesi</h3>
+            <h3>3.1 BV3 – Kurutma Makinesi</h3>
             <p>Geniş halıları ve zeminleri düşük maliyetli ve etkili bir şekilde kurutun. 3 kademeli endüksiyon motoru, düşük enerji tüketimi, istenilen açıda kullanılabilir kompakt tasarım.</p>
             <div class="vp-specs">
               <span class="vp-spec">250W Motor</span>
@@ -829,7 +865,7 @@
           <img src="root/images/viper/viper-page12.jpeg" alt="Viper AS380/15 Zemin Otomatı" class="vp-card-img" loading="lazy" />
           <div class="vp-card-body">
             <span class="vp-card-cat">İticili Zemin Otomatı</span>
-            <h3>AS 380/15 – Küçük Boy Zemin Otomatı</h3>
+            <h3>4.1 AS 380/15 – Küçük Boy Zemin Otomatı</h3>
             <p>Dar alanların temizliği için kullanıcı dostu ve kompakt çözüm. Ergonomik, ayarlanabilir ve katlanabilir kontrol kolu. Yüksek manevra kabiliyeti, kolay doldurma ve boşaltma.</p>
             <div class="vp-specs">
               <span class="vp-spec">250W Fırça</span>
@@ -844,7 +880,7 @@
           <img src="root/images/viper/viper-page13.jpeg" alt="Viper AS430/510 Zemin Temizleme Makinesi" class="vp-card-img" loading="lazy" />
           <div class="vp-card-body">
             <span class="vp-card-cat">İticili Zemin Otomatı</span>
-            <h3>AS430 / AS510 – İticili Zemin Otomatları</h3>
+            <h3>4.2 AS430 / AS510 – İticili Zemin Otomatları</h3>
             <p>Orta büyüklükteki alanlar için güçlü ve kompakt zemin temizleme makineleri. Kablolu ve akülü versiyonlar, kolay bakım ve yüksek verimlilik.</p>
             <div class="vp-specs">
               <span class="vp-spec">40–50L Tank</span>
@@ -859,7 +895,7 @@
           <img src="root/images/viper/viper-page14.jpeg" alt="Viper AS4325/AS4335 Zemin Otomatı" class="vp-card-img" loading="lazy" />
           <div class="vp-card-body">
             <span class="vp-card-cat">İticili Zemin Otomatı</span>
-            <h3>AS4325 / AS4335 – İticili Zemin Otomatları</h3>
+            <h3>4.3 AS4325 / AS4335 – İticili Zemin Otomatları</h3>
             <p>Yüksek performanslı zemin temizleme makinesi. Mekanik silici kaldırma sistemi, 4 tekerlekli dönüş sistemi ve ön tampon koruması ile güçlü ve dayanıklı.</p>
             <div class="vp-specs">
               <span class="vp-spec">56L Tank</span>
@@ -874,7 +910,7 @@
           <img src="root/images/viper/viper-page15.jpeg" alt="Viper AS5160 Zemin Otomatı" class="vp-card-img" loading="lazy" />
           <div class="vp-card-body">
             <span class="vp-card-cat">İticili Zemin Otomatı</span>
-            <h3>AS5160 – İticili Zemin Otomatı</h3>
+            <h3>4.4 AS5160 – İticili Zemin Otomatı</h3>
             <p>Geniş çalışma alanları için tasarlanmış güçlü iticili zemin bakım makinesi. Büyük tank kapasitesi, yüksek verimlilik ve kolay kullanım özellikleriyle öne çıkar.</p>
             <div class="vp-specs">
               <span class="vp-spec">60L Tank</span>
@@ -889,7 +925,7 @@
           <img src="root/images/viper/viper-page16.jpeg" alt="Viper AS530R Binicili Zemin Otomatı" class="vp-card-img" loading="lazy" />
           <div class="vp-card-body">
             <span class="vp-card-cat">Binicili Zemin Otomatı</span>
-            <h3>AS530R – Mini Binicili Zemin Otomatı</h3>
+            <h3>4.5 AS530R – Mini Binicili Zemin Otomatı</h3>
             <p>Rekabetçi fiyatı ile yüksek temizlik kapasitesine sahip mini binicili makine. Standart kapı ve asansörlerden rahatlıkla geçilebilir, 69 dB sessiz çalışma, USB giriş özelliği.</p>
             <div class="vp-specs">
               <span class="vp-spec">72L Tank</span>
@@ -904,7 +940,7 @@
           <img src="root/images/viper/viper-page17.jpeg" alt="Viper AS710R/AS850R Binicili Zemin Makinesi" class="vp-card-img" loading="lazy" />
           <div class="vp-card-body">
             <span class="vp-card-cat">Binicili Zemin Otomatı</span>
-            <h3>AS710R / AS850R – Binicili Zemin Makineleri</h3>
+            <h3>4.6 AS710R / AS850R – Binicili Zemin Makineleri</h3>
             <p>Okullar, oteller, marketler, ofis binaları ve alışveriş merkezleri için güçlü, dayanıklı ve kullanımı kolay binicili zemin bakım makinesi. Tek tuşla çalışma, otomatik hız düşürücü.</p>
             <div class="vp-specs">
               <span class="vp-spec">120L Tank</span>
@@ -919,7 +955,7 @@
           <img src="root/images/viper/viper-page18.jpeg" alt="Viper AS1050R Binicili Zemin Otomatı" class="vp-card-img" loading="lazy" />
           <div class="vp-card-body">
             <span class="vp-card-cat">Binicili Zemin Otomatı</span>
-            <h3>AS1050R – Büyük Binicili Zemin Otomatı</h3>
+            <h3>4.7 AS1050R – Büyük Binicili Zemin Otomatı</h3>
             <p>Geniş ve zorlu zeminler için tasarlanan en büyük binicili model. Çift vakum sistemi, Eco modu, LCD ekran, otomatik fırça kavrama, ön farlar ve güçlü tampon koruma.</p>
             <div class="vp-specs">
               <span class="vp-spec">200L Tank</span>
@@ -935,7 +971,7 @@
           <img src="root/images/viper/viper-page19.jpeg" alt="Viper PS480 Manuel Süpürücü" class="vp-card-img" loading="lazy" />
           <div class="vp-card-body">
             <span class="vp-card-cat">Süpürücü</span>
-            <h3>PS480 – Manuel Süpürücü</h3>
+            <h3>5.1 PS480 – Manuel Süpürücü</h3>
             <p>Avantajlı fiyatı, dayanıklılığı ve kolay kullanımıyla öne çıkan arkadan iticili manuel süpürücü. Motor, akü veya kablo gerektirmez, neredeyse servis ihtiyacı yoktur.</p>
             <div class="vp-specs">
               <span class="vp-spec">38L Çöp Haznesi</span>
@@ -950,7 +986,7 @@
           <img src="root/images/viper/viper-page20.jpeg" alt="Viper LS160 Cila Makinesi" class="vp-card-img" loading="lazy" />
           <div class="vp-card-body">
             <span class="vp-card-cat">Cila &amp; Parlatma</span>
-            <h3>LS160 / LS160HD – Düşük Hızlı Cila Makinesi</h3>
+            <h3>6.1 LS160 / LS160HD – Düşük Hızlı Cila Makinesi</h3>
             <p>Orta-ağır işler için tasarlanmış tek diskli zemin bakım makinesi. Alüminyum gövde, planet dişli sistemi, soft start özelliği, büyük arka tekerlekler ile kolay taşıma.</p>
             <div class="vp-specs">
               <span class="vp-spec">1300–1800W</span>
@@ -965,7 +1001,7 @@
           <img src="root/images/viper/viper-page21.jpeg" alt="Viper DR1500H Cila Parlatma Makinesi" class="vp-card-img" loading="lazy" />
           <div class="vp-card-body">
             <span class="vp-card-cat">Cila &amp; Parlatma</span>
-            <h3>DR1500H – Cila Parlatma Makinesi</h3>
+            <h3>6.2 DR1500H – Cila Parlatma Makinesi</h3>
             <p>Geniş alanların bakımını düşük maliyetle yapan ultra yüksek hızlı cila parlatma makinesi. Sert zeminlerde uzun süreli parlaklık, ergonomik ve katlanabilir sap tasarımı.</p>
             <div class="vp-specs">
               <span class="vp-spec">1200W Motor</span>
